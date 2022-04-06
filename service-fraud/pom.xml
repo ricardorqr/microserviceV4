@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-customer</artifactId>
+    <artifactId>service-fraud</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -43,31 +43,31 @@
         </dependency>
 
         <!-- Eureka Client -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- Clients Module -->
-<!--        <dependency>-->
-<!--            <groupId>com.microservice</groupId>-->
-<!--            <artifactId>clients</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.microservice</groupId>-->
+        <!--            <artifactId>clients</artifactId>-->
+        <!--            <version>1.0-SNAPSHOT</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
 
         <!-- Kafka -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.kafka</groupId>-->
-<!--            <artifactId>spring-kafka</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.kafka</groupId>-->
+        <!--            <artifactId>spring-kafka</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- Kafka Test -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.kafka</groupId>-->
-<!--            <artifactId>spring-kafka-test</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.kafka</groupId>-->
+        <!--            <artifactId>spring-kafka-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- Springfox Annotation -->
         <dependency>
@@ -109,12 +109,12 @@
                 <version>5.4.0</version>
                 <executions>
                     <execution>
-                        <id>customer-api</id>
+                        <id>fraud-api</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/customer-api.yml</inputSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/fraud-api.yml</inputSpec>
                             <generatorName>spring</generatorName>
 
                             <apiPackage>com.spring.swagger.codegen.api</apiPackage>
