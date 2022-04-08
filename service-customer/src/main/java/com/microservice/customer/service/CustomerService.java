@@ -2,6 +2,7 @@ package com.microservice.customer.service;
 
 import com.microservice.customer.model.Customer;
 import com.microservice.customer.repository.CustomerRepository;
+import com.spring.swagger.codegen.api.FraudApiClient;
 import com.spring.swagger.codegen.model.CustomerRequest;
 import com.spring.swagger.codegen.model.CustomerResponse;
 import com.spring.swagger.codegen.model.CustomerResponseNoMessage;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class CustomerService {
 
     private final CustomerRepository repository;
+    private final FraudApiClient api;
 
     public ResponseEntity<CustomerResponse> saveCustomer(CustomerRequest customerRequest) {
         Customer customer = Customer.builder()
@@ -27,7 +29,16 @@ public class CustomerService {
                                     .lastName(customerRequest.getLastName())
                                     .email(customerRequest.getEmail())
                                     .build();
-        repository.save(customer);
+        repository.saveAndFlush(customer);
+
+
+        ResponseEntity<Boolean> fraudCheckResponse = api.isFraudster(customer.getId());
+
+        if (!fraudCheckResponse.getStatusCode()
+                               .equals(HttpStatus.OK)) {
+            throw new IllegalStateException("ERROR: Not HTTP 200");
+        }
+
         return new ResponseEntity<>(changeBookToBookResponse(customer, "Customer inserted successfully"), HttpStatus.OK);
     }
 

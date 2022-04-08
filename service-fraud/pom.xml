@@ -42,33 +42,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Eureka Client -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-        <!--        </dependency>-->
-
-        <!-- Clients Module -->
-        <!--        <dependency>-->
-        <!--            <groupId>com.microservice</groupId>-->
-        <!--            <artifactId>clients</artifactId>-->
-        <!--            <version>1.0-SNAPSHOT</version>-->
-        <!--            <scope>compile</scope>-->
-        <!--        </dependency>-->
-
-        <!-- Kafka -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.kafka</groupId>-->
-        <!--            <artifactId>spring-kafka</artifactId>-->
-        <!--        </dependency>-->
-
-        <!-- Kafka Test -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.kafka</groupId>-->
-        <!--            <artifactId>spring-kafka-test</artifactId>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-
         <!-- Springfox Annotation -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -99,14 +72,65 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.13.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.joschi.jackson</groupId>
+            <artifactId>jackson-datatype-threetenbp</artifactId>
+            <version>2.6.4</version>
+        </dependency>
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.5.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-security</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+
+        <!-- Eureka Client -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+<!--        </dependency>-->
+
+        <!-- Clients Module -->
+<!--        <dependency>-->
+<!--            <groupId>com.microservice</groupId>-->
+<!--            <artifactId>clients</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
+
+        <!-- Kafka -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka</artifactId>-->
+<!--        </dependency>-->
+
+        <!-- Kafka Test -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>5.4.0</version>
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>3.0.33</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.jknack</groupId>
+                        <artifactId>handlebars</artifactId>
+                        <version>4.3.0</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>fraud-api</id>
@@ -115,24 +139,18 @@
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/fraud-api.yml</inputSpec>
-                            <generatorName>spring</generatorName>
+                            <language>spring</language>
+                            <library>spring-cloud</library>
 
+                            <configOptions>
+                                <java8>false</java8>
+                                <generateForOpenFeign>true</generateForOpenFeign>
+                            </configOptions>
+
+                            <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.spring.swagger.codegen.api</apiPackage>
                             <modelPackage>com.spring.swagger.codegen.model</modelPackage>
-                            <output>${project.build.directory}/generated-sources</output>
-
-                            <generateSupportingFiles>true</generateSupportingFiles>
-                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                            <configOptions>
-                                <interfaceOnly>true</interfaceOnly>
-                                <returnResponse>true</returnResponse>
-                                <library>spring-boot</library>
-                                <useTags>false</useTags>
-                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                                <useSwaggerAnnotations>true</useSwaggerAnnotations>
-                                <serializableModel>true</serializableModel>
-                                <interfaceOnly>true</interfaceOnly>
-                            </configOptions>
+                            <invokerPackage>com.spring.swagger.codegen.handler</invokerPackage>
                         </configuration>
                     </execution>
                 </executions>
