@@ -123,11 +123,13 @@
 
     <build>
         <plugins>
+            <!-- Plugin to pack the MS into a jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
+            <!-- Plugin to generate Swagger classes -->
             <plugin>
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
