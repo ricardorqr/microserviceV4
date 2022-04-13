@@ -131,16 +131,9 @@
 
             <!-- Plugin to generate Swagger classes -->
             <plugin>
-                <groupId>io.swagger.codegen.v3</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>3.0.33</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.github.jknack</groupId>
-                        <artifactId>handlebars</artifactId>
-                        <version>4.3.0</version>
-                    </dependency>
-                </dependencies>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.4.0</version>
                 <executions>
                     <execution>
                         <id>customer-api</id>
@@ -149,12 +142,11 @@
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/customer-api.yml</inputSpec>
-                            <language>spring</language>
+                            <generatorName>spring</generatorName>
                             <library>spring-cloud</library>
 
                             <configOptions>
-                                <java8>false</java8>
-                                <generateForOpenFeign>true</generateForOpenFeign>
+                                <dateLibrary>java8</dateLibrary>
                             </configOptions>
 
                             <output>${project.build.directory}/generated-sources</output>
