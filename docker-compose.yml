@@ -4,8 +4,9 @@
 version: '3.1'
 
 services:
+
   mariadb:
-    image: mariadb-custon
+    image: mariadb
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: example
@@ -17,7 +18,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - "8099:8099"
+      - "9000:9000"
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
