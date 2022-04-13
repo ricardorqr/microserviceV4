@@ -1,8 +1,14 @@
 # Microservice V4
 
-This project is an example of microservice using Spring Boot, Docker and Kafka.
+This project is an example of microservice using Spring Boot, Docker and Kafka. It was used Swagger Codegen to generate documentation and OpenFeign client.
+
+##### Infrastructure
 
 ![Microservice V4](files/MicroserviceV4.png)
+
+##### Flow
+
+![Microservice V4](files/Flow.png)
 
 # Running the application.
 
