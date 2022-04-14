@@ -28,9 +28,9 @@ spring:
 #  swagger-ui:
 #    path: /customers/swagger
 
-#eureka: # Eureka Server. It connects to the Eureka server service
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka
-#    fetch-registry: true
-#    register-with-eureka: true
+eureka: # Eureka Server. It connects to the Eureka server service
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true

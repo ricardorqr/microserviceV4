@@ -94,18 +94,10 @@
         </dependency>
 
         <!-- Eureka Client -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--        </dependency>-->
-
-        <!-- Clients Module -->
-<!--        <dependency>-->
-<!--            <groupId>com.microservice</groupId>-->
-<!--            <artifactId>clients</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
 
         <!-- Kafka -->
 <!--        <dependency>-->
@@ -147,12 +139,33 @@
 
                             <configOptions>
                                 <dateLibrary>java8</dateLibrary>
+                                <configPackage>com.microservice.customer.swagger.config</configPackage>
                             </configOptions>
 
                             <output>${project.build.directory}/generated-sources</output>
-                            <apiPackage>com.spring.swagger.codegen.api</apiPackage>
-                            <modelPackage>com.spring.swagger.codegen.model</modelPackage>
-                            <invokerPackage>com.spring.swagger.codegen.handler</invokerPackage>
+                            <apiPackage>com.microservice.customer.swagger.api</apiPackage>
+                            <modelPackage>com.microservice.customer.swagger.model</modelPackage>
+                            <invokerPackage>com.microservice.customer.swagger.handler</invokerPackage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source-customer</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/src/main/java</source>
+                            </sources>
                         </configuration>
                     </execution>
                 </executions>

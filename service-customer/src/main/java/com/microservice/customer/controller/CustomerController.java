@@ -1,10 +1,10 @@
 package com.microservice.customer.controller;
 
 import com.microservice.customer.service.CustomerService;
-import com.spring.swagger.codegen.api.CustomerApi;
-import com.spring.swagger.codegen.model.CustomerRequest;
-import com.spring.swagger.codegen.model.CustomerResponse;
-import com.spring.swagger.codegen.model.CustomerResponseNoMessage;
+import com.microservice.customer.swagger.api.CustomerApi;
+import com.microservice.customer.swagger.model.CustomerRequest;
+import com.microservice.customer.swagger.model.CustomerResponse;
+import com.microservice.customer.swagger.model.CustomerResponseNoMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
