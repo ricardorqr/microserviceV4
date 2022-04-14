@@ -132,6 +132,7 @@
                             <configOptions>
                                 <dateLibrary>java8</dateLibrary>
                                 <configPackage>com.microservice.fraud.swagger.config</configPackage>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
                             </configOptions>
 
                             <output>${project.build.directory}/generated-sources</output>

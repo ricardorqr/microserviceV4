@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * FraudCheckDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-04-13T20:31:48.739864900-04:00[America/New_York]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class FraudCheckDTO   {
 
   @JsonProperty("isFraudster")
