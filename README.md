@@ -40,7 +40,7 @@ In the `eureka-server` project folder, run the command:
 <eureka-server>$ mvn spring-boot:run
 ```
 
-3. Run All Services
+2. Run All Services
 
 In each service folder (`service-customer`, `service-fraud` and `service-notification`) without caring about the order, run the command:
 
