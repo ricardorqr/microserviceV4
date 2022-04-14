@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/microservice/customer/swagger/api/CustomerApi.java
+src/main/java/com/microservice/customer/swagger/api/CustomerApiClient.java
+src/main/java/com/microservice/customer/swagger/config/ApiKeyRequestInterceptor.java
+src/main/java/com/microservice/customer/swagger/config/ClientConfiguration.java
+src/main/java/com/microservice/customer/swagger/model/CustomerDTO.java
+src/main/java/com/microservice/customer/swagger/model/CustomerRequest.java
+src/main/java/com/microservice/customer/swagger/model/CustomerResponse.java
+src/main/java/com/microservice/customer/swagger/model/CustomerResponseNoMessage.java
+src/main/java/com/microservice/customer/swagger/model/Error.java
