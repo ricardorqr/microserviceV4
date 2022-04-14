@@ -72,3 +72,4 @@ In each service folder (`service-customer`, `service-fraud` and `service-notific
 
 - https://shdhumale.wordpress.com/2021/07/16/creating-spring-boot-feign-client-code-using-swagger-code-generator-using-plugin/
 - https://github.com/janitham/swagger-codegen-feign-example
+- https://www.polak.ro/2021/04/02/api-first-and-code-generation-done-right.html
