@@ -12,21 +12,17 @@ This project is an example of microservice using Spring Boot, Docker and Kafka. 
 
 # Running the application.
 
-### 1. Create the MariaDB Docker Image
+### 1. Docker
 
-The folder `/scripts` has the scripts to create and populate the MariaDB database.
-
-Run the commands below on the root project folder at the same order.
+In the root project folder, run the command:
 
 ```shell
-<microserviceV4>$ docker build -t mariadb-custon:latest .
-<microserviceV4>$ docker tag mariadb-custon:latest ricardorqr/mariadb-custon
-<microserviceV4>$ docker push ricardorqr/mariadb-custon
+<microserviceV4>$ docker compose up
 ```
 
 Here is how to check the database
 
-- URL: [http://localhost:8080/?server=mariadb](http://localhost:8080/?server=mariadb)
+- URL: [http://localhost:9000/?server=mariadb](http://localhost:9000/?server=mariadb)
 - Server: mariadb
 - Username: root
 - Password: example
@@ -36,15 +32,7 @@ Here is how to check the database
 
 ### 2. Run application
 
-1. Run docker
-
-In the root project folder, run the command:
-
-```shell
-<microserviceV4>$ docker compose up
-```
-
-2. Run Eureka Server
+1. Run Eureka Server
 
 In the `eureka-server` project folder, run the command:
 
