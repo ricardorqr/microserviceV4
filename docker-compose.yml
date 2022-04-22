@@ -18,7 +18,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - "9000:9000"
+      - "8080:8080"
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest

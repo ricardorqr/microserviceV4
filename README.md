@@ -22,7 +22,7 @@ In the root project folder, run the command:
 
 Here is how to check the database
 
-- URL: [http://localhost:9000/?server=mariadb](http://localhost:9000/?server=mariadb)
+- URL: [http://localhost:8080/?server=mariadb](http://localhost:8080/?server=mariadb)
 - Server: mariadb
 - Username: root
 - Password: example
@@ -65,8 +65,8 @@ In each service folder (`service-customer`, `service-fraud` and `service-notific
 
 - Database: [http://localhost:8080/?server=mariadb](http://localhost:8080/?server=mariadb)
 - Eureka Server: [http://localhost:8761](http://localhost:8761)
-- Customer MS Swagger: [http://localhost:8081/customers/swagger](http://localhost:8081/customers/swagger)
-- Fraud MS Swagger: [http://localhost:8082/fraud/swagger](http://localhost:8082/customers/swagger)
+- Customer MS Swagger: [http://localhost:8081/customers/swagger](http://localhost:8081/swagger)
+- Fraud MS Swagger: [http://localhost:8082/fraud/swagger](http://localhost:8082/swagger)
 
 # Resources
 
