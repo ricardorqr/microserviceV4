@@ -1,0 +1,190 @@
+openapi: 3.0.0
+
+info:
+  title: Cutomer API Specification
+  description: Customer API Specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: ricardorqr@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1-SNAPSHOT
+
+servers:
+  - url: http://localhost:8081
+
+tags:
+  - name: Customer
+    description: Operations about customers
+    externalDocs:
+      description: Find out more about our store
+      url: http://swagger.io
+
+paths:
+  /customers:
+
+    get:
+      tags:
+        - Customer
+      summary: Get all Customers
+      operationId: getAllCustomers
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerResponseNoMessage'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: System Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Customer
+      summary: Add a Customer
+      operationId: addCustomer
+      requestBody:
+        description: A Customer
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: System Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+#security:
+#  - token: []
+
+components:
+  schemas:
+
+    CustomerDTO:
+      type: object
+      required:
+        - title
+        - author
+      properties:
+        firstName:
+          description: First name of the customer
+          type: string
+          example: Ricardo
+          minLength: 5
+          maxLength: 256
+        lastName:
+          description: Last name of the customer
+          type: string
+          example: Ribeiro
+          minLength: 5
+          maxLength: 256
+        email:
+          description: Email of the customer
+          type: string
+          example: ricardo@gmail.com
+          minLength: 5
+          maxLength: 256
+
+    CustomerRequest:
+      description: A customer request
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CustomerDTO'
+
+    CustomerResponseNoMessage:
+      description: A customer response
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CustomerDTO'
+
+    CustomerResponse:
+      description: A customer response
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: Details about the response
+          type: string
+          example: Example of message
+      allOf:
+        - $ref: '#/components/schemas/CustomerDTO'
+
+    Error:
+      type: object
+      description: The Error object contains information about the error
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          example: 666
+        message:
+          type: string
+          example: Any error message
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+#  securitySchemes:
+#    token:
+#      description: Plese, provide the security token
+#      type: apiKey
+#      name: token
+#      in: header
+

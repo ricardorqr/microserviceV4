@@ -8,8 +8,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>clients</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <openapi-generator-maven-plugin.version>5.4.0</openapi-generator-maven-plugin.version>
@@ -63,22 +63,10 @@
             <artifactId>spring-cloud-security</artifactId>
             <version>2.2.5.RELEASE</version>
         </dependency>
-
-        <!-- Eureka Client -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Plugin to pack the MS into a jar -->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-
             <!-- Plugin to generate Swagger classes -->
             <plugin>
                 <groupId>org.openapitools</groupId>
@@ -107,15 +95,6 @@
                             <invokerPackage>com.microservice.clients.swagger.fraud.handler</invokerPackage>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-
-            <!-- Plugin to generate Swagger classes -->
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>${openapi-generator-maven-plugin.version}</version>
-                <executions>
                     <execution>
                         <id>customer-api</id>
                         <goals>
@@ -136,26 +115,6 @@
                             <apiPackage>com.microservice.clients.swagger.customer.api</apiPackage>
                             <modelPackage>com.microservice.clients.swagger.customer.model</modelPackage>
                             <invokerPackage>com.microservice.clients.swagger.customer.handler</invokerPackage>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <id>add-source-fraud</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources/src/main/java</source>
-                            </sources>
                         </configuration>
                     </execution>
                 </executions>

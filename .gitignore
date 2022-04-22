@@ -5,3 +5,6 @@
 /service-customer/target/generated-sources/
 /service-fraud/target/
 /service-fraud/target/generated-sources/
+/eureka-server/eureka-server.iml
+/service-customer/service-customer.iml
+/service-fraud/service-fraud.iml

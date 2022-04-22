@@ -24,9 +24,10 @@ spring:
 #  rabbitmq: # Rabbit Message Queue Server. It connects to the Rabbit Message MQ server docker image
 #    addresses: localhost:5672 # No http://. It has its own protocol
 
-#springdoc: # Swagger documentation
-#  swagger-ui:
-#    path: /customers/swagger
+springdoc:  # Swagger documentation
+  swagger-ui:
+    url: /customer-api.yml
+    path: /swagger
 
 eureka: # Eureka Server. It connects to the Eureka server service
   client:
