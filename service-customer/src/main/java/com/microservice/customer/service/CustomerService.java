@@ -1,5 +1,6 @@
 package com.microservice.customer.service;
 
+import com.microservice.clients.notification.NotificationRequest;
 import com.microservice.clients.swagger.customer.model.CustomerRequest;
 import com.microservice.clients.swagger.customer.model.CustomerResponse;
 import com.microservice.clients.swagger.customer.model.CustomerResponseNoMessage;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class CustomerService {
 
     private final CustomerRepository repository;
     private final FraudApiClient api;
+    private final KafkaTemplate<String, NotificationRequest> kafkaTemplate;
 
     public ResponseEntity<CustomerResponse> saveCustomer(CustomerRequest customerRequest) {
         Customer customer = Customer.builder()
@@ -31,13 +34,23 @@ public class CustomerService {
                                     .build();
         repository.saveAndFlush(customer);
 
-
+        // Fraud service
         ResponseEntity<Boolean> fraudCheckResponse = api.isFraudster(customer.getId());
 
         if (!fraudCheckResponse.getStatusCode()
                                .equals(HttpStatus.OK)) {
             throw new IllegalStateException("ERROR: Not HTTP 200");
         }
+
+        NotificationRequest notificationRequest = NotificationRequest.builder()
+                                                                     .toCustomerId(customer.getId())
+                                                                     .toCustomerName(customer.getEmail())
+                                                                     .message(String.format("Hi %s, How are you?", customer.getFirstName()))
+                                                                     .build();
+
+        // Notification service
+        kafkaTemplate.send("customerKafkaTopic", notificationRequest);
+        log.info("Publishing the message: {}", notificationRequest);
 
         return new ResponseEntity<>(changeBookToBookResponse(customer, "Customer inserted successfully"), HttpStatus.OK);
     }
@@ -66,55 +79,5 @@ public class CustomerService {
         response.setMessage(message);
         return response;
     }
-
-//    private final FraudClient fraudClient;  // Sync message
-//    private final KafkaTemplate<String, NotificationRequest> kafkaTemplate; // Async message
-
-//    public CustomerResponse saveCustomer(CustomerRequest customerRequest) {
-//        Customer customerSaved = repository.saveAndFlush(Customer.builder()
-//                                                                 .firstName(customerRequest.getFirstName())
-//                                                                 .lastName(customerRequest.getLastName())
-//                                                                 .email(customerRequest.getEmail())
-//                                                                 .build());
-//
-//        // Client service
-//        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customerSaved.getId());
-//
-//        if (fraudCheckResponse.isFraudster()) {
-//            throw new IllegalStateException("Fraudster");
-//        }
-//
-//        NotificationRequest notificationRequest = NotificationRequest.builder()
-//                                                                     .toCustomerId(customerSaved.getId())
-//                                                                     .toCustomerName(customerSaved.getEmail())
-//                                                                     .message(String.format("Hi %s, How are you?", customerSaved.getFirstName()))
-//                                                                     .build();
-//
-//        // Notification service
-//        kafkaTemplate.send("customerKafkaTopic", notificationRequest);
-//        log.info("Publishing the message: {}", notificationRequest);
-//
-//        return CustomerResponse.builder()
-//                               .firstName(customerSaved.getFirstName())
-//                               .lastName(customerSaved.getLastName())
-//                               .email(customerSaved.getEmail())
-//                               .fraudulent(fraudCheckResponse.isFraudster())
-//                               .build();
-//    }
-//
-//    public List<CustomerResponse> getAll() {
-//        return repository.findAll()
-//                         .stream()
-//                         .map(customer -> {
-//                             FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
-//                             return CustomerResponse.builder()
-//                                                    .firstName(customer.getFirstName())
-//                                                    .lastName(customer.getLastName())
-//                                                    .email(customer.getEmail())
-//                                                    .fraudulent(fraudCheckResponse.isFraudster())
-//                                                    .build();
-//                         })
-//                         .collect(Collectors.toList());
-//    }
 
 }
