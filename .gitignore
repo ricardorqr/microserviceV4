@@ -1,1 +1,7 @@
 /.idea/
+/clients/target/
+/eureka-server/target/
+/service-customer/target/
+/service-customer/target/generated-sources/
+/service-fraud/target/
+/service-fraud/target/generated-sources/

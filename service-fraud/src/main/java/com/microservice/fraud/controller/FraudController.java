@@ -1,7 +1,7 @@
 package com.microservice.fraud.controller;
 
+import com.microservice.clients.swagger.fraud.api.FraudApi;
 import com.microservice.fraud.service.FraudService;
-import com.microservice.fraud.swagger.api.FraudApi;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

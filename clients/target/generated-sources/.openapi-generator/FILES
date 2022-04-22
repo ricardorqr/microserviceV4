@@ -1,0 +1,11 @@
+README.md
+pom.xml
+src/main/java/com/microservice/clients/swagger/customer/api/CustomerApi.java
+src/main/java/com/microservice/clients/swagger/customer/api/CustomerApiClient.java
+src/main/java/com/microservice/clients/swagger/customer/config/ApiKeyRequestInterceptor.java
+src/main/java/com/microservice/clients/swagger/customer/config/ClientConfiguration.java
+src/main/java/com/microservice/clients/swagger/customer/model/CustomerDTO.java
+src/main/java/com/microservice/clients/swagger/customer/model/CustomerRequest.java
+src/main/java/com/microservice/clients/swagger/customer/model/CustomerResponse.java
+src/main/java/com/microservice/clients/swagger/customer/model/CustomerResponseNoMessage.java
+src/main/java/com/microservice/clients/swagger/customer/model/Error.java

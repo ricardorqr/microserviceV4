@@ -1,11 +1,11 @@
 package com.microservice.customer.service;
 
+import com.microservice.clients.swagger.customer.model.CustomerRequest;
+import com.microservice.clients.swagger.customer.model.CustomerResponse;
+import com.microservice.clients.swagger.customer.model.CustomerResponseNoMessage;
+import com.microservice.clients.swagger.fraud.api.FraudApiClient;
 import com.microservice.customer.model.Customer;
 import com.microservice.customer.repository.CustomerRepository;
-import com.microservice.customer.swagger.model.CustomerRequest;
-import com.microservice.customer.swagger.model.CustomerResponse;
-import com.microservice.customer.swagger.model.CustomerResponseNoMessage;
-import com.microservice.fraud.swagger.api.FraudApiClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

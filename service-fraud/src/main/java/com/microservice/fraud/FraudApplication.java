@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.microservice.fraud.swagger")
+@EnableFeignClients(basePackages = "com.microservice.clients")
 @EnableEurekaClient
 public class FraudApplication {
 
