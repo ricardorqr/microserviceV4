@@ -17,7 +17,7 @@ public class FraudController implements FraudApi {
 
     @Override
     public ResponseEntity<Boolean> isFraudster(Integer customerId) {
-        log.info("Fraud check request for the customer: {}", customerId);
+        log.info("Check request for the customer: {}", customerId);
         return new ResponseEntity<>(service.isFraudulentCustomer(customerId), HttpStatus.OK);
     }
 

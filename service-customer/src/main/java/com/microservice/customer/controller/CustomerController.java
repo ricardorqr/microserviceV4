@@ -7,9 +7,11 @@ import com.microservice.clients.swagger.customer.model.CustomerResponseNoMessage
 import com.microservice.customer.service.CustomerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,7 +29,12 @@ public class CustomerController implements CustomerApi {
 
     @Override
     public ResponseEntity<List<CustomerResponseNoMessage>> getAllCustomers() {
-        return service.getAllCustomers();
+        ResponseEntity<List<CustomerResponseNoMessage>> allCustomers = service.getAllCustomers();
+        if (allCustomers.getBody() != null) {
+            log.info("All customers: {}", allCustomers.getBody().size());
+            return allCustomers;
+        }
+        return new ResponseEntity<>(new ArrayList<CustomerResponseNoMessage>(), HttpStatus.OK);
     }
 
 }

@@ -36,6 +36,7 @@ public class CustomerService {
 
         // Fraud service
         ResponseEntity<Boolean> fraudCheckResponse = api.isFraudster(customer.getId());
+        log.info("Fraud response: {}", fraudCheckResponse.getBody());
 
         if (!fraudCheckResponse.getStatusCode()
                                .equals(HttpStatus.OK)) {
