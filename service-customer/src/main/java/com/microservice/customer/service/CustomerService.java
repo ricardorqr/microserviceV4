@@ -14,12 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 @Slf4j
+@Transactional
 public class CustomerService {
 
     private final CustomerRepository repository;
@@ -40,6 +42,7 @@ public class CustomerService {
 
         if (!fraudCheckResponse.getStatusCode()
                                .equals(HttpStatus.OK)) {
+            log.error("ERROR while call Fraud MC: {}", fraudCheckResponse.getStatusCode());
             throw new IllegalStateException("ERROR: Not HTTP 200");
         }
 
