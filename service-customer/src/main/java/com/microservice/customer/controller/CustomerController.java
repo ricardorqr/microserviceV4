@@ -5,6 +5,7 @@ import com.microservice.clients.swagger.customer.model.CustomerRequest;
 import com.microservice.clients.swagger.customer.model.CustomerResponse;
 import com.microservice.clients.swagger.customer.model.CustomerResponseNoMessage;
 import com.microservice.customer.service.CustomerService;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class CustomerController implements CustomerApi {
     private final CustomerService service;
 
     @Override
+    @Retry(name = "customerAddCustomer", fallbackMethod = "serviceAFallback")
     public ResponseEntity<CustomerResponse> addCustomer(CustomerRequest customerRequest) {
         log.info("New customer: {}", customerRequest);
         return service.saveCustomer(customerRequest);
@@ -35,6 +37,10 @@ public class CustomerController implements CustomerApi {
             return allCustomers;
         }
         return new ResponseEntity<>(new ArrayList<CustomerResponseNoMessage>(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> serviceAFallback(Exception e) {
+        return new ResponseEntity<>("This is a fallback method from customer", HttpStatus.OK);
     }
 
 }
