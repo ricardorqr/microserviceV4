@@ -15,7 +15,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDB103Dialect
-        format_sql: true
+#        format_sql: true
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -41,31 +41,31 @@ feign:
 
 resilience4j:
   circuitbreaker:
-    instances:
-      customerAddCustomer:
-        registerHealthIndicator: true
-        slidingWindowSize: 10
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowType: TIME_BASED
-        minimumNumberOfCalls: 20
-        waitDurationInOpenState: 50s
-        failureRateThreshold: 50
-        eventConsumerBufferSize: 10
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        recordFailurePredicate: com.microservice.customer.exception.RecordFailurePredicate
+#    instances:
+#      customerAddCustomer:
+#        registerHealthIndicator: true
+#        slidingWindowSize: 10
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        slidingWindowType: TIME_BASED
+#        minimumNumberOfCalls: 20
+#        waitDurationInOpenState: 50s
+#        failureRateThreshold: 50
+#        eventConsumerBufferSize: 10
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        recordFailurePredicate: com.microservice.customer.exception.RecordFailurePredicate
 
   retry:
     instances:
       customerAddCustomer:
         maxAttempts: 3
-        waitDuration: 10s
-        enableExponentialBackoff: true
-        exponentialBackoffMultiplier: 2
-        retryExceptions:
-          - org.springframework.web.client.HttpServerErrorException
-          - java.io.IOException
-        ignoreExceptions:
-          - com.microservice.customer.exception.BusinessException
+        waitDuration: 3s
+#        enableExponentialBackoff: true
+#        exponentialBackoffMultiplier: 2
+#        retryExceptions:
+#          - org.springframework.web.client.HttpServerErrorException
+#          - java.io.IOException
+#        ignoreExceptions:
+#          - com.microservice.customer.exception.BusinessException
 
 management:
   health:

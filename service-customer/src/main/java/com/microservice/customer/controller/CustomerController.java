@@ -23,9 +23,9 @@ public class CustomerController implements CustomerApi {
     private final CustomerService service;
 
     @Override
-    @Retry(name = "customerAddCustomer", fallbackMethod = "serviceAFallback")
+    @Retry(name = "customerAddCustomer", fallbackMethod = "addCustomerFallback")
     public ResponseEntity<CustomerResponse> addCustomer(CustomerRequest customerRequest) {
-        log.info("New customer: {}", customerRequest);
+        log.info("New customer");
         return service.saveCustomer(customerRequest);
     }
 
@@ -36,10 +36,11 @@ public class CustomerController implements CustomerApi {
             log.info("All customers: {}", allCustomers.getBody().size());
             return allCustomers;
         }
-        return new ResponseEntity<>(new ArrayList<CustomerResponseNoMessage>(), HttpStatus.OK);
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
     }
 
-    public ResponseEntity<String> serviceAFallback(Exception e) {
+    public ResponseEntity<String> addCustomerFallback(Exception e) {
+        log.error("This is a fallback method from customer: {}", e.getMessage());
         return new ResponseEntity<>("This is a fallback method from customer", HttpStatus.OK);
     }
 
