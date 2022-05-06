@@ -78,3 +78,4 @@ In each service folder (`service-customer`, `service-fraud` and `service-notific
 - https://spring.io/guides/gs/multi-module/
 - https://mydeveloperplanet.com/2022/02/08/generate-server-code-using-openapi-generator/
 - https://www.youtube.com/watch?v=t4jaTC7QjMg
+- https://resilience4j.readme.io/docs
