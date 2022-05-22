@@ -4,11 +4,11 @@ This project is an example of microservice using Spring Boot, Docker and Kafka. 
 
 ##### Infrastructure
 
-![Microservice V4](files/MicroserviceV4.png)
+![Microservice V4](.files/MicroserviceV4.png)
 
 ##### Flow
 
-![Microservice V4](files/Flow.png)
+![Microservice V4](.files/Flow.png)
 
 # Running the application.
 
@@ -28,7 +28,7 @@ Here is how to check the database
 - Password: example
 - Database: example
 
-![Table Customer](files/MariaDB01.png)
+![Table Customer](.files/MariaDB01.png)
 
 ### 2. Run application
 
@@ -79,3 +79,4 @@ In each service folder (`service-customer`, `service-fraud` and `service-notific
 - https://mydeveloperplanet.com/2022/02/08/generate-server-code-using-openapi-generator/
 - https://www.youtube.com/watch?v=t4jaTC7QjMg
 - https://resilience4j.readme.io/docs
+- https://github.com/deviantony/docker-elk
