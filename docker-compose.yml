@@ -75,6 +75,7 @@ services:
 
   elasticsearch:
     container_name: elasticsearch
+    restart: always
     build:
       context: .elk/elasticsearch/
       args:
@@ -99,6 +100,7 @@ services:
 
   logstash:
     container_name: logstash
+    restart: always
     build:
       context: .elk/logstash/
       args:
@@ -121,6 +123,7 @@ services:
 
   kibana:
     container_name: kibana
+    restart: always
     build:
       context: .elk/kibana/
       args:
